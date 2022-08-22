@@ -1,7 +1,6 @@
 package com.alves.financa.controller.dto;
 
-import com.alves.financa.modelo.Despesas;
-import com.alves.financa.modelo.Receitas;
+import com.alves.financa.modelo.Despesa;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,16 +16,16 @@ public class DespesasDto {
     //Construtor da Classe DTO Busca as Informacoes na classe
     // principal, por isso precisa apenas de getters//
 
-    public DespesasDto(Despesas despesas) {
-        this.id = despesas.getId();
-        this.descricao = despesas.getTitulo();
-        this.valor = despesas.getValor();
-        this.dataCriacao = despesas.getDataCriacao();
+    public DespesasDto(Despesa despesa) {
+        this.id = despesa.getId();
+        this.descricao = despesa.getDescricao();
+        this.valor = despesa.getValor();
+        this.dataCriacao = despesa.getDataCriacao();
     }
 //Criando metodo para converter a lista de topico para converter em topicos dto//
 
-    public static List<DespesasDto> converter(List<Despesas> despesasMetodo) {
-        return despesasMetodo.stream().map(DespesasDto::new).collect(Collectors.toList());
+    public static List<DespesasDto> converter(List<Despesa> despesaMetodo) {
+        return despesaMetodo.stream().map(DespesasDto::new).collect(Collectors.toList());
     }
 
     public Long getId() {
