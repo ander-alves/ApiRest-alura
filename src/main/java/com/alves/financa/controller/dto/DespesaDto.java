@@ -1,18 +1,23 @@
-package com.alves.financa.controller.form;
+package com.alves.financa.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-public class ReceitasDtoInput {
-
+@Builder
+public class DespesaDto {
     private String descricao;
+    private Double valor;
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private LocalDate dataCriacao;
 
-    private Double valor;
+    public DespesaDto(String descricao, Double valor, LocalDate dataCriacao) {
+        this.descricao = descricao;
+        this.valor = valor;
+        this.dataCriacao = dataCriacao;
+    }
 
     public String getDescricao() {
         return descricao;
@@ -20,14 +25,6 @@ public class ReceitasDtoInput {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public LocalDate getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDate dataCriacao) {
-        this.dataCriacao = dataCriacao;
     }
 
     public Double getValor() {
@@ -38,10 +35,11 @@ public class ReceitasDtoInput {
         this.valor = valor;
     }
 
-    public ReceitasDtoInput(String descricao, LocalDate dataCriacao, Double valor) {
-        this.descricao = descricao;
-        this.dataCriacao = dataCriacao;
-        this.valor = valor;
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
+    }
 
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 }

@@ -2,7 +2,7 @@ package com.alves.financa.controller;
 
 import com.alves.financa.controller.converter.ReceitaConverter;
 import com.alves.financa.controller.dto.ReceitaDto;
-import com.alves.financa.controller.form.ReceitasDtoInput;
+import com.alves.financa.controller.form.ReceitaDtoInput;
 import com.alves.financa.modelo.Receita;
 import com.alves.financa.repository.ReceitasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +34,8 @@ public class ReceitasController {
     }
 
     @PostMapping
-    public ResponseEntity<ReceitaDto> cadastrarReceitas(@RequestBody ReceitasDtoInput receitasDtoInput){
-        Receita receita = receitaConverter.toReceitaBanco(receitasDtoInput);
+    public ResponseEntity<ReceitaDto> cadastrarReceitas(@RequestBody ReceitaDtoInput receitaDtoInput){
+        Receita receita = receitaConverter.toReceitaBanco(receitaDtoInput);
         receitasRepository.save(receita);
 
         return ResponseEntity.ok(receitaConverter.toReceitaDto(receita));

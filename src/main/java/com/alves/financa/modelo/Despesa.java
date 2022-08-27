@@ -1,28 +1,38 @@
 package com.alves.financa.modelo;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
+
+import javax.persistence.*;
+import java.security.PublicKey;
+import java.time.LocalDate;
+
 
 @Entity
+@Builder
 public class Despesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column (nullable = false)
     private String descricao;
-    private LocalDateTime dataCriacao;
-    private double valor;
 
-    public Despesa() {
-    }
+    @Column (nullable = false)
+    @JsonFormat(pattern = "yyyy/MM/dd")
+    private LocalDate dataCriacao;
 
-    public Despesa(String titulo, LocalDateTime dataCriacao, double valor) {
-        this.descricao = titulo;
+    @Column (nullable = false)
+    private Double valor;
+
+    public Despesa(Long id, String descricao, LocalDate dataCriacao, Double valor) {
+        this.id = id;
+        this.descricao = descricao;
         this.dataCriacao = dataCriacao;
         this.valor = valor;
+    }
+    public Despesa(){
     }
 
     public Long getId() {
@@ -41,19 +51,19 @@ public class Despesa {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public double getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 }

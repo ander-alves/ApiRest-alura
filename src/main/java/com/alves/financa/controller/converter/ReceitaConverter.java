@@ -1,7 +1,7 @@
 package com.alves.financa.controller.converter;
 
 import com.alves.financa.controller.dto.ReceitaDto;
-import com.alves.financa.controller.form.ReceitasDtoInput;
+import com.alves.financa.controller.form.ReceitaDtoInput;
 import com.alves.financa.modelo.Receita;
 import org.springframework.stereotype.Service;
 
@@ -34,12 +34,12 @@ public class ReceitaConverter {
                 .build();
 
     }
-    public Receita toReceitaBanco(ReceitasDtoInput receitasDtoInput){
+    public Receita toReceitaBanco(ReceitaDtoInput receitaDtoInput){
 
         return Receita.builder()
-                .dataCriacao(receitasDtoInput.getDataCriacao())
-                .descricao(receitasDtoInput.getDescricao())
-                .valor(receitasDtoInput.getValor())
+                .dataCriacao(receitaDtoInput.getDataCriacao())
+                .descricao(receitaDtoInput.getDescricao())
+                .valor(receitaDtoInput.getValor())
                 .build();
     }
 
