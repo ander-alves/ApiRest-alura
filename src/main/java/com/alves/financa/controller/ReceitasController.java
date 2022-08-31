@@ -41,17 +41,17 @@ public class ReceitasController {
     public ResponseEntity<ReceitaDto> cadastrarReceitas(@RequestBody @Valid ReceitaDtoInput receitaDtoInput){
         Receita receita = receitaConverter.toReceitaBanco(receitaDtoInput);
         receitasRepository.save(receita);
-        //return ResponseEntity.ok(receitaConverter.toReceitaDto(receita));
-        return new ResponseEntity<>(receitaConverter.toReceitaDto(receita), HttpStatus.CREATED);
+
+        return ResponseEntity.ok(receitaConverter.toReceitaDto(receita));
     }
     @GetMapping("/{id}") //revisar sobre o detalhamento, para que ele me devolva os itens da classe detalhes DTO
-    public ResponseEntity<ReceitaDto> buscarPorId (@PathVariable Long id ) {
+    public ReceitaDto buscarPorId (@PathVariable Long id ) {
         Optional<Receita> receita = receitasRepository.findById(id);
 
         if (receita.isPresent()){
-            return ResponseEntity.ok(receitaConverter.toReceitaDto(receita.get()));
+            return receitaConverter.toReceitaDto(receita.get());
         }
-        return ResponseEntity.notFound().build();
+        return (ReceitaDto) ResponseEntity.badRequest();
     }
     @PutMapping("/{id}")
     @Transactional
@@ -60,12 +60,9 @@ public class ReceitasController {
         Receita receita = atualizarReceitaDtoInput.atualizar(id, receitasRepository);
 
         return ResponseEntity.ok(receitaConverter.toReceitaDto(receita));
+
+
     }
-    @DeleteMapping("/{id}")
-    @Transactional
-    public ResponseEntity<?> deletar(@PathVariable Long id ) {
-        receitasRepository.deleteById(id);
-        return ResponseEntity.ok().build();
-    }
+
 
 }
