@@ -2,12 +2,14 @@ package com.alves.financa.controller;
 
 import com.alves.financa.controller.converter.ReceitaConverter;
 import com.alves.financa.controller.dto.ReceitaDto;
+import com.alves.financa.controller.form.AtualizarReceitaDtoInput;
 import com.alves.financa.controller.form.ReceitaDtoInput;
 import com.alves.financa.modelo.Receita;
 import com.alves.financa.repository.ReceitasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -42,13 +44,24 @@ public class ReceitasController {
 
         return ResponseEntity.ok(receitaConverter.toReceitaDto(receita));
     }
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") //revisar sobre o detalhamento, para que ele me devolva os itens da classe detalhes DTO
     public ReceitaDto buscarPorId (@PathVariable Long id ) {
         Optional<Receita> receita = receitasRepository.findById(id);
+
         if (receita.isPresent()){
             return receitaConverter.toReceitaDto(receita.get());
         }
-        return null;
+        return (ReceitaDto) ResponseEntity.badRequest();
+    }
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<ReceitaDto> atualizar(@PathVariable Long id,@RequestBody
+    @Valid AtualizarReceitaDtoInput atualizarReceitaDtoInput) {
+        Receita receita = atualizarReceitaDtoInput.atualizar(id, receitasRepository);
+
+        return ResponseEntity.ok(receitaConverter.toReceitaDto(receita));
+
+
     }
 
 

@@ -1,5 +1,6 @@
 package com.alves.financa.controller.dto;
 
+import com.alves.financa.modelo.Receita;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 
@@ -18,6 +19,9 @@ public class ReceitaDto {
         this.descricao = descricao;
         this.valor = valor;
         this.dataCriacao = dataCriacao;
+    }
+
+    public ReceitaDto(Receita receita) {
     }
 
     public String getDescricao() {
