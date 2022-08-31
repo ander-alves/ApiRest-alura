@@ -68,5 +68,4 @@ public class ReceitasController {
         return ResponseEntity.ok().build();
     }
 
-
 }
