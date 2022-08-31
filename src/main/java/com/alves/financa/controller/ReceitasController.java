@@ -42,16 +42,18 @@ public class ReceitasController {
         Receita receita = receitaConverter.toReceitaBanco(receitaDtoInput);
         receitasRepository.save(receita);
 
-        return ResponseEntity.ok(receitaConverter.toReceitaDto(receita));
+        //return ResponseEntity.ok(receitaConverter.toReceitaDto(receita));
+        return new ResponseEntity<ReceitaDto>(receitaConverter.toReceitaDto(receita), HttpStatus.CREATED);
+
     }
     @GetMapping("/{id}") //revisar sobre o detalhamento, para que ele me devolva os itens da classe detalhes DTO
-    public ReceitaDto buscarPorId (@PathVariable Long id ) {
+    public ResponseEntity<ReceitaDto> buscarPorId (@PathVariable Long id ) {
         Optional<Receita> receita = receitasRepository.findById(id);
 
         if (receita.isPresent()){
-            return receitaConverter.toReceitaDto(receita.get());
+            return ResponseEntity.ok(receitaConverter.toReceitaDto(receita.get()));
         }
-        return (ReceitaDto) ResponseEntity.badRequest();
+        return ResponseEntity.notFound().build();
     }
     @PutMapping("/{id}")
     @Transactional
