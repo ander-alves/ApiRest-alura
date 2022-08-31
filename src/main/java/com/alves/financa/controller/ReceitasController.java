@@ -7,8 +7,10 @@ import com.alves.financa.modelo.Receita;
 import com.alves.financa.repository.ReceitasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +36,7 @@ public class ReceitasController {
     }
 
     @PostMapping
-    public ResponseEntity<ReceitaDto> cadastrarReceitas(@RequestBody ReceitaDtoInput receitaDtoInput){
+    public ResponseEntity<ReceitaDto> cadastrarReceitas(@RequestBody @Valid ReceitaDtoInput receitaDtoInput){
         Receita receita = receitaConverter.toReceitaBanco(receitaDtoInput);
         receitasRepository.save(receita);
 

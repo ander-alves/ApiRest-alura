@@ -2,10 +2,15 @@ package com.alves.financa.controller.form;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class ReceitaDtoInput {
-
+    @NotNull @NotEmpty @Size(min = 10, max = 200, message
+            = "About Me must be between 10 and 200 characters")
     private String descricao;
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
