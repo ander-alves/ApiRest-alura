@@ -1,6 +1,7 @@
 package com.alves.financa.controller;
 
 import com.alves.financa.controller.converter.ReceitaConverter;
+import com.alves.financa.controller.dto.DetalhesReceitaDto;
 import com.alves.financa.controller.dto.ReceitaDto;
 import com.alves.financa.controller.form.AtualizarReceitaDtoInput;
 import com.alves.financa.controller.form.ReceitaDtoInput;
@@ -43,14 +44,13 @@ public class ReceitasController {
 
         return ResponseEntity.ok(receitaConverter.toReceitaDto(receita));
     }
-    @GetMapping("/{id}") //revisar sobre o detalhamento, para que ele me devolva os itens da classe detalhes DTO
-    public ReceitaDto buscarPorId (@PathVariable Long id ) {
+    @GetMapping("/{id}")
+    public ResponseEntity<DetalhesReceitaDto> detalhar(@PathVariable Long id) {
         Optional<Receita> receita = receitasRepository.findById(id);
-
-        if (receita.isPresent()){
-            return receitaConverter.toReceitaDto(receita.get());
+        if (receita.isPresent()) {
+            return ResponseEntity.ok(new DetalhesReceitaDto(receita.get()));
         }
-        return (ReceitaDto) ResponseEntity.badRequest();
+        return ResponseEntity.notFound().build();
     }
     @PutMapping("/{id}")
     @Transactional
