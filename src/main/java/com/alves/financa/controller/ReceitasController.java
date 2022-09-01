@@ -63,9 +63,14 @@ public class ReceitasController {
     }
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<?> deletar(@PathVariable Long id ){
+    public ResponseEntity<?> remover(@PathVariable Long id) {
+        Optional<Receita> optional = receitasRepository.findById(id);
+        if (optional.isPresent()) {
+            receitasRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
 
-        return
     }
 
 
