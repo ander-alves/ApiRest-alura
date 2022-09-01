@@ -1,6 +1,6 @@
-package com.alves.financa.controller.converter;
+package com.alves.financa.modelo.converter;
 
-import com.alves.financa.controller.dto.ReceitaDto;
+import com.alves.financa.modelo.dto.ReceitaDto;
 import com.alves.financa.controller.form.ReceitaDtoInput;
 import com.alves.financa.modelo.Receita;
 import org.springframework.stereotype.Service;

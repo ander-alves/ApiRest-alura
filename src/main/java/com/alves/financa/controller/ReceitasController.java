@@ -1,8 +1,8 @@
 package com.alves.financa.controller;
 
-import com.alves.financa.controller.converter.ReceitaConverter;
-import com.alves.financa.controller.dto.DetalhesReceitaDto;
-import com.alves.financa.controller.dto.ReceitaDto;
+import com.alves.financa.modelo.converter.ReceitaConverter;
+import com.alves.financa.modelo.dto.DetalhesReceitaDto;
+import com.alves.financa.modelo.dto.ReceitaDto;
 import com.alves.financa.controller.form.AtualizarReceitaDtoInput;
 import com.alves.financa.controller.form.ReceitaDtoInput;
 import com.alves.financa.modelo.Receita;

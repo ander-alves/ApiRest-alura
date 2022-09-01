@@ -1,6 +1,6 @@
-package com.alves.financa.controller.converter;
+package com.alves.financa.modelo.converter;
 
-import com.alves.financa.controller.dto.DespesaDto;
+import com.alves.financa.modelo.dto.DespesaDto;
 import com.alves.financa.controller.form.DespesaDtoInput;
 import com.alves.financa.modelo.Despesa;
 import org.springframework.stereotype.Service;
@@ -36,6 +36,13 @@ public class DespesaConverter {
                 .valor(despesaDtoInput.getValor())
                 .build();
     }
+    public DespesaDto toDespesaDtoOutput(Despesa despesa){
+        return DespesaDto.builder()
+                .descricao(despesa.getDescricao())
+                .valor(despesa.getValor())
+                .dataCriacao(despesa.getDataCriacao())
+                .build();
+            }
 
 }
 

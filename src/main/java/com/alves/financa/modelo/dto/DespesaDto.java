@@ -1,4 +1,4 @@
-package com.alves.financa.controller.dto;
+package com.alves.financa.modelo.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
