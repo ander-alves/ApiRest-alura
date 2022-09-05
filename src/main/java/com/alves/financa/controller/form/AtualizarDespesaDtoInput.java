@@ -1,14 +1,15 @@
 package com.alves.financa.controller.form;
 
-import com.alves.financa.modelo.Receita;
-import com.alves.financa.repository.ReceitasRepository;
+import com.alves.financa.modelo.Despesa;
+import com.alves.financa.repository.DespesasRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-public class AtualizarReceitaDtoInput {
+public class AtualizarDespesaDtoInput {
     @NotNull
     @NotEmpty
     @Size(min = 5, max = 200, message = "About Me must be between 10 and 200 characters")
@@ -43,11 +44,13 @@ public class AtualizarReceitaDtoInput {
         this.valor = valor;
     }
 
-    public Receita atualizar(Long id, ReceitasRepository receitasRepository) {
-        Receita receita = receitasRepository.getReferenceById(id);
-        receita.setDescricao(this.descricao);
-        receita.setValor(this.valor);
-        receita.setDataCriacao(this.dataCriacao);
-        return receita;
+    public Despesa atualizar(Long id, DespesasRepository despesasRepository) {
+        Despesa despesa = despesasRepository.getReferenceById(id);
+        despesa.setDescricao(this.descricao);
+        despesa.setDataCriacao(this.dataCriacao);
+        despesa.setValor(this.valor);
+        return despesa;
+
+
     }
 }

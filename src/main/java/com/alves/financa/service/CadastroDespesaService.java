@@ -54,5 +54,9 @@ public class CadastroDespesaService {
         }
         return null;
     }
+    public DespesaDto atualizar(Long id ){
+        Despesa despesa = despesasRepository.getReferenceById(id);
+        return despesaConverter.toDespesaDtoOutput(despesa);
+    }
 
 }
