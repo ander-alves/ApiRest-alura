@@ -1,5 +1,6 @@
 package com.alves.financa.service;
 
+import com.alves.financa.controller.form.AtualizarDespesaDtoInput;
 import com.alves.financa.modelo.converter.DespesaConverter;
 import com.alves.financa.controller.form.DespesaDtoInput;
 import com.alves.financa.modelo.Despesa;
@@ -7,7 +8,6 @@ import com.alves.financa.modelo.dto.DespesaDto;
 import com.alves.financa.repository.DespesasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -54,8 +54,8 @@ public class CadastroDespesaService {
         }
         return null;
     }
-    public DespesaDto atualizar(Long id ){
-        Despesa despesa = despesasRepository.getReferenceById(id);
+    public DespesaDto atualizar(Long id , AtualizarDespesaDtoInput atualizarDespesaDtoInput){
+        Despesa despesa = atualizarDespesaDtoInput.atualizar(id, despesasRepository);
         return despesaConverter.toDespesaDtoOutput(despesa);
     }
 

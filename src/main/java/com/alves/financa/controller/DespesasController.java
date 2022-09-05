@@ -50,10 +50,7 @@ public class DespesasController {
     @Transactional
     public ResponseEntity<DespesaDto> atualizar(@PathVariable Long id, @RequestBody
     @Valid AtualizarDespesaDtoInput atualizarDespesaDtoInput) {
-        DespesaDto despesaDto =cadastroDespesaService.atualizar(id);
+        DespesaDto despesaDto = cadastroDespesaService.atualizar(id,atualizarDespesaDtoInput);
         return ResponseEntity.ok(despesaDto);
     }
-
-
-
 }

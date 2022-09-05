@@ -3,7 +3,6 @@ package com.alves.financa.controller.form;
 import com.alves.financa.modelo.Despesa;
 import com.alves.financa.repository.DespesasRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -47,8 +46,8 @@ public class AtualizarDespesaDtoInput {
     public Despesa atualizar(Long id, DespesasRepository despesasRepository) {
         Despesa despesa = despesasRepository.getReferenceById(id);
         despesa.setDescricao(this.descricao);
-        despesa.setDataCriacao(this.dataCriacao);
         despesa.setValor(this.valor);
+        despesa.setDataCriacao(this.dataCriacao);
         return despesa;
 
 
