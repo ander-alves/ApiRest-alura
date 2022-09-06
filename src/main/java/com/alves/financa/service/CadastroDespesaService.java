@@ -7,7 +7,9 @@ import com.alves.financa.modelo.Despesa;
 import com.alves.financa.modelo.dto.DespesaDto;
 import com.alves.financa.repository.DespesasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -58,5 +60,11 @@ public class CadastroDespesaService {
         Despesa despesa = atualizarDespesaDtoInput.atualizar(id, despesasRepository);
         return despesaConverter.toDespesaDtoOutput(despesa);
     }
-
+    public void deletar(Long id) {
+        Optional<Despesa> optional = despesasRepository.findById(id);
+        if (optional.isPresent()) {
+            despesasRepository.deleteById(id);
+            return;
+        }
+    }
 }

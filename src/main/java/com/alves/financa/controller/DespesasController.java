@@ -53,4 +53,16 @@ public class DespesasController {
         DespesaDto despesaDto = cadastroDespesaService.atualizar(id,atualizarDespesaDtoInput);
         return ResponseEntity.ok(despesaDto);
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DespesaDto> deletar (@PathVariable Long id) {
+        DespesaDto despesaDto = cadastroDespesaService.buscarPorId(id);
+        cadastroDespesaService.deletar(id);
+        if (Objects.isNull(despesaDto)){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().build();
+    }
+
 }
