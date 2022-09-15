@@ -43,5 +43,11 @@ public class ReceitaConverter {
                 .build();
     }
 
-
+    public ReceitaDto toReceitaDtoOutput(Receita receita) {
+        return ReceitaDto.builder()
+                .descricao(receita.getDescricao())
+                .valor(receita.getValor())
+                .dataCriacao(receita.getDataCriacao())
+                .build();
+    }
 }
